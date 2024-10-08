@@ -6,7 +6,7 @@ import dtsPlugin from "vite-plugin-dts";
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: "./", // remove this line if you are not deploying to a subdirectory
+  base: "./",
   root: resolve(__dirname, "src"),
   publicDir: resolve(__dirname, "public"),
   build: {
