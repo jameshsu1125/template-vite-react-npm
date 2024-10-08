@@ -27,4 +27,4 @@ dist-ssr
 package-lock.json
 
 # lib
-/lib
+# /lib
