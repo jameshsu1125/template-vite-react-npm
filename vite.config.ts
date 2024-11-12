@@ -19,6 +19,16 @@ export default defineConfig({
       formats: ["es", "cjs"],
     },
   },
+  css: {
+    preprocessorOptions: {
+      less: {
+        math: "always",
+        globalVars: {
+          mainColor: "red",
+        },
+      },
+    },
+  },
   resolve: {
     alias: {
       "@": resolve(__dirname, "src"),
@@ -39,5 +49,6 @@ export default defineConfig({
   ],
   server: {
     open: true,
+    port: 5173,
   },
 });

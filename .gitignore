@@ -26,5 +26,3 @@ dist-ssr
 # lock files
 package-lock.json
 
-# lib
-/lib
