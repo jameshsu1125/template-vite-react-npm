@@ -16,7 +16,7 @@ export default defineConfig({
       entry: resolve(__dirname, "src/index.tsx"),
       name: "index",
       fileName: "index",
-      formats: ["es", "cjs", "umd"],
+      formats: ["es", "cjs"],
     },
   },
   css: {
