@@ -1,5 +1,4 @@
 const App = () => {
-  alert('aaa')
   return <div>app</div>;
 };
 
