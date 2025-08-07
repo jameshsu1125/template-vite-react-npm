@@ -21,6 +21,9 @@ export default defineConfig(({ mode }) => {
         fileName: 'index',
         formats: ['es', 'cjs'],
       },
+      rollupOptions: {
+        external: ['react', 'react/jsx-runtime'],
+      },
     },
     css: {
       preprocessorOptions: {
