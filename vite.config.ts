@@ -1,6 +1,6 @@
 import react from '@vitejs/plugin-react';
 import { resolve } from 'path';
-import { defineConfig } from 'vite';
+import { defineConfig, type LibraryFormats } from 'vite';
 import cssInjectedByJsPlugin from 'vite-plugin-css-injected-by-js';
 import dtsPlugin from 'vite-plugin-dts';
 
@@ -17,7 +17,7 @@ export default defineConfig(() => {
         entry: resolve(import.meta.dirname, 'src/index.tsx'),
         name: 'index',
         fileName: 'index',
-        formats: ['es', 'cjs'],
+        formats: ['es', 'cjs'] as LibraryFormats[],
       },
       rollupOptions: {
         external: ['react', 'react/jsx-runtime'],
@@ -42,7 +42,7 @@ export default defineConfig(() => {
     plugins: [
       react(),
       cssInjectedByJsPlugin(),
-      dtsPlugin({ insertTypesEntry: true, outDir: '../lib' }),
+      dtsPlugin({ insertTypesEntry: true, outDirs: '../lib' }),
     ],
     server: {
       open: true,
