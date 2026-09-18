@@ -5,22 +5,24 @@ import cssInjectedByJsPlugin from 'vite-plugin-css-injected-by-js';
 import dtsPlugin from 'vite-plugin-dts';
 
 // https://vitejs.dev/config/
-export default defineConfig(() => {
+export default defineConfig(({ mode }) => {
+  const isStandalone = mode === 'standalone';
+
   return {
     base: './',
     root: resolve(import.meta.dirname, 'src'),
     publicDir: resolve(import.meta.dirname, 'public'),
     build: {
-      emptyOutDir: true,
+      emptyOutDir: !isStandalone,
       outDir: '../lib',
       lib: {
-        entry: resolve(import.meta.dirname, 'src/index.tsx'),
-        name: 'index',
-        fileName: 'index',
+        entry: resolve(import.meta.dirname, isStandalone ? 'src/standalone.tsx' : 'src/index.tsx'),
+        name: isStandalone ? 'standalone' : 'index',
+        fileName: isStandalone ? 'standalone' : 'index',
         formats: ['es', 'cjs'] as LibraryFormats[],
       },
       rollupOptions: {
-        external: ['react', 'react/jsx-runtime'],
+        external: isStandalone ? [] : ['react', 'react-dom', 'react/jsx-runtime'],
       },
     },
     css: {
@@ -42,7 +44,7 @@ export default defineConfig(() => {
     plugins: [
       react(),
       cssInjectedByJsPlugin(),
-      dtsPlugin({ insertTypesEntry: true, outDirs: '../lib' }),
+      dtsPlugin({ insertTypesEntry: true }),
     ],
     server: {
       open: true,
